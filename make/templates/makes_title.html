@@ -1,0 +1,27 @@
+  
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">攻略一覧</h1>
+        <p class="lead text-muted">
+          様々なジャンルのゲームの攻略方法を投稿してみんなとシェア！<br>
+          お気に入りの記事はいいねをつけてコメントしよう！！
+        </p>
+      {% if user.is_authenticated %}
+          <!--ログイン中のボタン-->
+          <a href="{% url 'make:make' %}" class="btn btn-primary my-2">投稿</a>
+          
+          <form method="post" action="{% url 'accounts:logout' %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-link p-0">ログアウト</button>
+          </form>
+          {% else %}
+          <!--ログイン状態ではない場合のボタン-->
+          <a href="{% url 'accounts:signup' %}" class="btn btn-primary my-2">サインアップ</a>
+          <a href="{% url 'accounts:login' %}" class="btn btn-secondary my-2">登録済み</a>
+          {% endif %}
+      </div>
+    </div>
+  </section>
+
+ 

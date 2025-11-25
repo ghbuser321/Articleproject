@@ -1,0 +1,81 @@
+<!--静的ファイルのURLを生成するstaticタグをロードする-->
+{% load static %}
+<!doctype html>
+<!--言語変更-->
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <!--タイトル変更-->
+    <title>Log in</title>
+
+    <!--<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">-->
+    <!--staticでfavicon.icoのURLを生成する-->
+    <link rel="icon" type="image/x-icon" href={% static 'assets/favicon.ico' %} />
+
+    <!-- Bootstrap core CSS -->
+    <!--linkタグを置き換え-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <!--「static/css/sigin.css」の読み込み-->
+    <link href={% static "css/signin.css" %} rel="stylesheet">
+  </head>
+  <body class="text-center">
+    <main class="form-signin">
+      <!--ユーザー名とパスワードが一致しな場合のメッセージ-->
+      {% if form.errors %}
+        <p style="color: red">ユーザー名とパスワードが一致しません</p>
+      {% endif %}
+      <!--ログインのフォーム配置-->
+      <form method="post">
+        {% csrf_token %}
+        <!--ロゴの表示-->
+        <!--staticの読み込み-->
+        <img class="mb-4" src={% static "img/bootstrap-logo.svg" %} alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <!--<div class="form-floating">~</div>の二つのブロックを削除していかに置き換え-->
+        <!--usernameのラベル-->
+        <label for="Username" class="visually-hidden">User name</label>
+
+        <!--usenmaeの<input>タグを出力-->
+        <!--name属性のLoginViewで定義されているフィールド名username-->
+        <input type="text" name="username" id="id_username" maxlength="150" autocomplete="username" class="form-control" placeholder="ユーザー名" required autofocus>
+        <!--passwordのラベル（非表示）-->
+        <label for="password" class="visually-hidden">Password</label>
+        <!--passwordの<input>タグを出力-->
+        <!--name属性の値はLogubViewで定義されているフィールド名password-->
+        <input type="password" name="password" id="id_password" autocomplete="current-password" class="form-control" placeholder="パスワード" required autofocus>
+
+        <!--<button>~</bootn>を置き換えてログインボタンを配置-->
+          <input class="w-100 btn btn-lg btn-primary" type="submit" value="ログイン">
+
+        <!--<p>~</p>をパスワードリセットページのリンクテキストに置き換え-->
+        <br><br>
+        <p><a href="#">パスワードを忘れましたか？</a></p>
+        <!--ログイン直後のリダイレクト先（トップページ）のURLパターンを設定-->
+        <input type="hidden" name="next" value="{% url 'make:index' %}">
+     </form>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}詳細欄{% endblock %}
+
+{% block contents %}
+<br>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <!--1枚目の写真-->
+            <p>
+                <img src="{{ object.image1.url }}" class="img-fluid" style="max-height: 400px; object-fit: cover;">
+            </p>
+
+            <!--2枚目があれば表示-->
+            {% if object.image2 %}
+            <p>
+                <img src="{{ object.image2.url }}" class="img-fluid rounded">
+            </p>
+            {% endif %}
+
+            <h2>{{ object.title }}</h2>
+
+            <!--コメント-->
+            <p>{{ object.comment }}</p>
+
+            <br>
+
+            <!--投稿日時-->
+            <p>{{ object.posted_at }}</p>
+
+            <!--削除ボタン（ログインユーザーと投稿者が同じ場合）-->
+            {% if request.user == object.user %}
+                <a href="{% url 'make:makes_delete' object.pk %}" class="btn btn-danger my-2">削除する</a>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

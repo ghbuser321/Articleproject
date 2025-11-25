@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block contents %}
+    <!--検索除け-->
+    <br>
+    <h4>検索結果</h4>
+    {% if results %}       
+        {% for post in results %}
+            <p>
+                タイトル:<a href="{% url 'make:makes_detail' post.pk %}">{{ post.title }}</a>
+            </p>
+            <P>投稿者:{{ post.user.username }}</P>
+            <P>投稿日時:{{ post.posted_at }}</P>
+            <hr>
+        {% endfor %}
+    {% elif query %}
+        <P>該当する投稿がありません</P>
+    {% endif %}
+{% endblock %}
