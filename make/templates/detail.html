@@ -10,31 +10,34 @@
 
             <!--1枚目の写真-->
             <p>
-                <img src="{{ object.image1.url }}" class="img-fluid" style="max-height: 400px; object-fit: cover;">
+                <img src="{{ object.image1.url }}" class="img-fluid" style="width: 100%; max-height: 400px; object-fit: co;">
             </p>
 
-            <!--2枚目があれば表示-->
-            {% if object.image2 %}
-            <p>
-                <img src="{{ object.image2.url }}" class="img-fluid rounded">
-            </p>
-            {% endif %}
+                <h2>{{ object.title }}</h2>
+            <hr>
+                    <!--コメント１の表示|linebreaks を使うことで、改行を <br> に変換して折り返しを反映-->    
+                    <p class="comment-text">{{ object.comment_1|linebreaks }}</p> 
+                    {% if object.comment_2 %}
 
-            <h2>{{ object.title }}</h2>
+                <!--2枚目があれば表示-->
+                {% if object.image2 %}
+                <p>
+                    <img src="{{ object.image2.url }}" class="img-fluid" style="width: 100%; max-height: 400px; object-fit: cover;">
+                </p>
+                {% endif %}   
+                    <!--コメント２-->
+                    <p class="comment-text">{{ object.comment_2|linebreaks }}</p>
+                    {% endif %}
+                    <br>
+                    <hr>
 
-            <!--コメント-->
-            <p>{{ object.comment }}</p>
+                    <!--投稿日時-->
+                    <p>{{ object.posted_at }}</p>
 
-            <br>
-
-            <!--投稿日時-->
-            <p>{{ object.posted_at }}</p>
-
-            <!--削除ボタン（ログインユーザーと投稿者が同じ場合）-->
-            {% if request.user == object.user %}
-                <a href="{% url 'make:makes_delete' object.pk %}" class="btn btn-danger my-2">削除する</a>
-            {% endif %}
-
+                    <!--削除ボタン（ログインユーザーと投稿者が同じ場合）-->
+                    {% if request.user == object.user %}
+                        <a href="{% url 'make:makes_delete' object.pk %}" class="btn btn-danger my-2">削除する</a>
+                    {% endif %}
         </div>
     </div>
 </div>

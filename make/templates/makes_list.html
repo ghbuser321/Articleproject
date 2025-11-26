@@ -11,15 +11,12 @@
             <div class="card-body">
               <!--タイトルを画面に表示-->
               <h5 class="card-title">{{ record.title }}</h5>
-              </P>              
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary"onclick="location.href='{% url 'make:makes_detail' record.pk %}'">詳細</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary"onclick="location.href='{% url 'make:makes_cat' category=record.category.id %}">{{record.category.title}}</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary"onclick="location.href='{% url 'make:makes_cat' category=record.category.id %}'">{{record.category.title}}</button>
                 </div>
-                <a href="{% url 'make:user_list' user=record.user.id %}">
-                  <small class="text-muted">{{record.user.username}}</small>
-                </a>
+                <small class="text-muted">{{record.user.username}}</small>
               </div>
             </div>
           </div>

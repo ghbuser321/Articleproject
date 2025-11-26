@@ -11,6 +11,7 @@
             <p>
                 タイトル:<a href="{% url 'make:makes_detail' post.pk %}">{{ post.title }}</a>
             </p>
+            <p>画像:<img src="{{ post.image1.url }}" class="img-fluid" style="max-height: 90px; object-fit: cover;"><br></p>
             <P>投稿者:{{ post.user.username }}</P>
             <P>投稿日時:{{ post.posted_at }}</P>
             <hr>

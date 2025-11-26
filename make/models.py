@@ -14,7 +14,9 @@ class PhotoPost(models.Model):
     category = models.ForeignKey(Category, verbose_name='カテゴリ', on_delete=models.PROTECT)
     title = models.CharField(verbose_name='タイトル', max_length=200)
 
-    comment=models.TextField(verbose_name='コメント',)
+    comment_1=models.TextField(verbose_name='コメント1',blank=True, null=True)
+    #さらにコメントを追加
+    comment_2=models.TextField(verbose_name='コメント2',blank=True, null=True)
     image1 = models.ImageField(verbose_name='イメージ1', upload_to = 'makes')
     image2 = models.ImageField(verbose_name='イメージ2', upload_to='makes',blank=True, null=True)
     #動画を追加するモデル

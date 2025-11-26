@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}マイページ{% endblock %}
+
+    {% block contents %}
+
+    {% if user.is_authenticated %}
+        <br>
+        <div style="text-align: center;">
+            <h4>{{user.username}}さんのページ</h4>
+            {% if object_list.count == 0 %}
+                <p>{{user.username}}の投稿はありません</p>
+            {% else %}
+                <p>投稿<strong>{{object_list.count}}</strong>件</p>
+            {% endif %}
+            <a href="{% url 'make:make' %}">投稿する</a>
+        </div>
+        <hr>
+    {% endif %}
+
+    {% include "makes_list.html" %}
+
+    {% include "pagenation.html" %}
+
+    {% endblock %}

@@ -1,0 +1,41 @@
+
+
+
+{% extends "base.html" %}
+{% block contents %}
+<div class="container" style="max-width: 720px; padding-top: 50px;">
+  <h2 class="mb-4">お問い合わせ</h2>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="mb-3">
+      <label for="id_name" class="form-label">お名前</label>
+      <div class="mx-auto" style="max-width: 250px;"></div>
+      {{ form.name }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_email" class="form-label ">返信先メール</label>
+      <div class="mx-auto" style="max-width: 250px;"></div>
+      {{ form.email }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_question_title" class="form-label">件名</label>
+      <div class="mx-auto" style="max-width: 250px;"></div>
+      {{ form.question_title }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_question_detail" class="form-label">本文</label>
+      {{ form.question_detail }}
+    </div>
+
+    <div class="d-flex gap-3">
+      <button type="submit" class="btn btn-primary">送信</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

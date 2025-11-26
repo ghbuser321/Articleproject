@@ -50,14 +50,61 @@
           font-size: 3.5rem;
         }
       }
+      #id_title{
+        width: 300px;
+        height: 40px;
+      }
+      #id_comment_1{
+        width: 450px;
+      }
+      #id_comment_2{
+        width: 450px;
+      }
 
-   
+     .comment-text {
+          white-space: pre-wrap; /* 改行を保持 */
+          word-wrap: break-word;  /* 長い単語の折り返し */
+      }
+
+      main{
+        padding-top: 60px;
+       
+      }
+
+      /**タイトルの部分の余白や背景画像の設定**/
+      .title-section{
+        background-image: url('/static/img/huri-gazou.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 60px ;
+        padding-bottom: 120px;
+        min-height: 300px;
+        
+        
+      }
+
+      /**入力欄を黒色**/
+      .form-control {
+        color: #000;                 /** 文字色：黒 **/
+        background-color: #fff;      /** 背景色：白 **/
+        border-color: #6c757d;       /** 枠線：やや濃いグレー（任意） **/
+      }
+      
+      .form-control {
+        max-width: 350px;
+      }
+      hr{
+        background-color: #0443ff;
+        height: 3px;
+      }
+
     </style>
 
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'make:index' %}">攻略サイト</a>
+          <a class="navbar-brand" href="{% url 'make:index' %}">情報サイト</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -65,14 +112,17 @@
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             {% if user.is_authenticated %}
             <!--ログイン中-->
-             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">マイページ</a>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'make:mypage' %}">{{user.username}}のページ</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'accounts:logout' %}">ログアウト</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Email me</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'password_reset' %}">パスワードリセット</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'make:question' %}">お問い合わせ</a>
             </li>
             {% else %}
             <!--ログアウト状態-->
@@ -82,10 +132,10 @@
             </li>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'accounts:login' }">ログイン</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'accounts:login' %}">ログイン</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="mailto:admin@example.com">Email me</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'make:question' %}">お問い合わせ</a>
             </li>
             {% endif %}
           </ul>
@@ -105,7 +155,7 @@
     <footer class="text-muted py-5">
       <div class="container">
         <p class="float-end mb-1">
-          <a href="{% url 'make:index' %}">Back to top</a>
+          <a href="{% url 'make:index' %}">トップに戻る</a>
         </p>
         <p class="mb-1">&copy; 本サイトはモラルを守って投稿しましょう！！</p>
       </div>
